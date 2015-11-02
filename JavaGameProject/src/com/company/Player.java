@@ -13,6 +13,7 @@ public class Player {
     private int x, y, width, height, velocity;
     private SpriteSheet sh;
     private String name;
+    private int cropWidth;
 
     public static boolean isMovingUp, isMovingDown, isMovingLeft, isMovingRight;
 
@@ -21,13 +22,30 @@ public class Player {
         this.y = y;
         this.width = width;
         this.height = height;
-        this.sh = new SpriteSheet(ImageLoader.load("/Images/player.jpg"));
+        this.sh = new SpriteSheet(ImageLoader.load("/Images/Dancho.png"));
         this.name = name;
-        this.velocity = 5;
+        this.velocity = 8;
+        this.cropWidth = 1;
     }
     public void tick(){
-        if(isMovingDown){
+        this.cropWidth++;
+        if (this.cropWidth >= 3) {
+            this.cropWidth = 1;
+        }
+        if(isMovingDown && isMovingLeft){
             this.y += this.velocity;
+            this.x -= this.velocity;
+        }else if(isMovingDown && isMovingRight){
+            this.y += this.velocity;
+            this.x += this.velocity;
+        }
+        else if(isMovingUp && isMovingLeft){
+            this.y -= this.velocity;
+            this.x -= this.velocity;
+        }
+        else if(isMovingUp && isMovingRight){
+            this.y -= this.velocity;
+            this.x += this.velocity;
         }
         else if(isMovingUp){
             this.y -= this.velocity;
@@ -38,9 +56,21 @@ public class Player {
         else if(isMovingLeft){
             this.x -= this.velocity;
         }
+        else if(isMovingDown){
+            this.y += this.velocity;
+        }
     }
     public void redner(Graphics g){
-        g.drawImage(this.sh.crop(0,0,this.width,this.height),this.x,this.y,null);
+        if (isMovingDown || isMovingRight){
+            g.drawImage(this.sh.crop(1+this.cropWidth*this.width,0,this.width,this.height),this.x,this.y,null);
+        }else if (isMovingLeft){
+            g.drawImage(this.sh.crop(1+this.cropWidth*this.width,32,this.width,this.height),this.x,this.y,null);
+        }else if (isMovingUp){
+            g.drawImage(this.sh.crop(1+this.cropWidth*this.width,64,this.width,this.height),this.x,this.y,null);
+        }else{
+            g.drawImage(this.sh.crop(0,0,this.width,this.height),this.x,this.y,null);
+        }
+
 
     }
 }

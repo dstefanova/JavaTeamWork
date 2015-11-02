@@ -35,9 +35,9 @@ public class Game implements Runnable{
     public void init(){
         this.display = new Display(title, WIDTH, HEIGHT);
         this.ih = new InputHandler(display);
-        this.sh = new SpriteSheet(ImageLoader.load("/Images/player.jpg"));
+        this.sh = new SpriteSheet(ImageLoader.load("/Images/Dancho.png")); //player
         Assets.init();
-        this.player = new Player(100,0,200,200,"Dancho");
+        this.player = new Player(100,0,32,32,"Dancho");
     }
 
     private void tick(){
@@ -52,7 +52,7 @@ public class Game implements Runnable{
         this.g = this.bs.getDrawGraphics();
         this.g.clearRect(0, 0, this.WIDTH, this.HEIGHT);
         // image Start
-        this.g.drawImage(ImageLoader.load("/Images/background.jpg"),0,0,null);
+        this.g.drawImage(ImageLoader.load("/Images/TU.png"),0,0,null); //Background
         this.player.redner(g);
        // this.g.drawImage(Assets.playerImage,100,200,null);
         //image end
