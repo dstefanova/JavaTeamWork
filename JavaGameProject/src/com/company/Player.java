@@ -14,21 +14,31 @@ public class Player {
     private SpriteSheet sh;
     private String name;
     private int cropWidth;
+    public Rectangle getBoundingBox(){
+        return boundingBox;
+    }
+    private Rectangle boundingBox;
 
     public static boolean isMovingUp, isMovingDown, isMovingLeft, isMovingRight;
+    public static boolean northShooting,southShooting,westShooting,eastShooting;
 
     public Player(int x, int y, int width, int height, String name) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+        this.boundingBox = new Rectangle(this.x + 2 , this.y + 2, this.width -4,this.height -4);
         this.sh = new SpriteSheet(ImageLoader.load("/Images/Dancho.png"));
+
         this.name = name;
         this.velocity = 8;
         this.cropWidth = 1;
+
     }
     public void tick(){
+
         this.cropWidth++;
+
         if (this.cropWidth >= 3) {
             this.cropWidth = 1;
         }
@@ -59,6 +69,17 @@ public class Player {
         else if(isMovingDown){
             this.y += this.velocity;
         }
+        if(northShooting){
+            Bullet nbullet = new Bullet(0,this.x,this.y);
+        }
+        else if(southShooting){
+            Bullet nbullet = new Bullet(1,this.x,this.y);
+        } else if(westShooting){
+            Bullet nbullet = new Bullet(3,this.x,this.y);
+        } else if(eastShooting){
+            Bullet nbullet = new Bullet(2,this.x,this.y);
+        }
+        this.boundingBox = new Rectangle(this.x + 4 , this.y + 2, this.width -6,this.height -4);
     }
     public void redner(Graphics g){
         if (isMovingDown || isMovingRight){

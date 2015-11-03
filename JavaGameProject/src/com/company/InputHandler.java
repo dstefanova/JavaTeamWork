@@ -14,7 +14,20 @@ public class InputHandler implements KeyListener {
     }
     @Override
     public void keyTyped(KeyEvent e) {
-
+        int keyCode = e.getKeyCode();
+        if(keyCode == KeyEvent.VK_L){
+            //from here we can set the images to go on the left side
+            Player.westShooting = true;
+        }
+        else if(keyCode == KeyEvent.VK_I){
+            Player.northShooting = true;
+        }
+        else if(keyCode == KeyEvent.VK_K){
+            Player.southShooting = true;
+        }
+        else if(keyCode == KeyEvent.VK_J){
+            Player.eastShooting = true;
+        }
     }
 
     @Override
@@ -33,6 +46,19 @@ public class InputHandler implements KeyListener {
         else if(keyCode == KeyEvent.VK_W){
             Player.isMovingUp = true;
         }
+        if(keyCode == KeyEvent.VK_LEFT){
+            //from here we can set the images to go on the left side
+            Player.isMovingLeft = true;
+        }
+        else if(keyCode == KeyEvent.VK_DOWN){
+            Player.isMovingDown = true;
+        }
+        else if(keyCode == KeyEvent.VK_RIGHT){
+            Player.isMovingRight = true;
+        }
+        else if(keyCode == KeyEvent.VK_UP){
+            Player.isMovingUp = true;
+        }
     }
 
     @Override
@@ -49,6 +75,19 @@ public class InputHandler implements KeyListener {
             Player.isMovingRight = false;
         }
         else if(keyCode == KeyEvent.VK_W){
+            Player.isMovingUp = false;
+        }
+        if(keyCode == KeyEvent.VK_LEFT){
+            //from here we can set the images to go on the left side
+            Player.isMovingLeft = false;
+        }
+        else if(keyCode == KeyEvent.VK_DOWN){
+            Player.isMovingDown = false;
+        }
+        else if(keyCode == KeyEvent.VK_RIGHT){
+            Player.isMovingRight = false;
+        }
+        else if(keyCode == KeyEvent.VK_UP){
             Player.isMovingUp = false;
         }
     }

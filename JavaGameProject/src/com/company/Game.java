@@ -24,6 +24,7 @@ public class Game implements Runnable{
     private Graphics g;
     private Player player;
     private InputHandler ih;
+    private Bullet bullet;
 
     public Game(String title, int WIDTH, int HEIGHT) {
         this.HEIGHT = HEIGHT;
@@ -38,10 +39,12 @@ public class Game implements Runnable{
         this.sh = new SpriteSheet(ImageLoader.load("/Images/Dancho.png")); //player
         Assets.init();
         this.player = new Player(100,0,32,32,"Dancho");
+        this.bullet = new Bullet()
     }
 
     private void tick(){
         this.player.tick();
+        this.bullet.tick();
     }
     private void render(){
         this.bs = this.display.getCanvas().getBufferStrategy();
@@ -54,6 +57,8 @@ public class Game implements Runnable{
         // image Start
         this.g.drawImage(ImageLoader.load("/Images/TU.png"),0,0,null); //Background
         this.player.redner(g);
+        this.bullet.render(g);
+        this.g.drawRect(this.player.getBoundingBox().x,this.player.getBoundingBox().y,this.player.getBoundingBox().width,this.player.getBoundingBox().height);
        // this.g.drawImage(Assets.playerImage,100,200,null);
         //image end
         this.bs.show();
