@@ -18,11 +18,21 @@ public class Player {
         return boundingBox;
     }
     private Rectangle boundingBox;
+    Controller c;
+
 
     public static boolean isMovingUp, isMovingDown, isMovingLeft, isMovingRight;
-    public static boolean northShooting,southShooting,westShooting,eastShooting;
+    public static boolean facingUp, facingLeft;
 
-    public Player(int x, int y, int width, int height, String name) {
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public Player(int x, int y, int width, int height, String name, Controller c) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -33,6 +43,8 @@ public class Player {
         this.name = name;
         this.velocity = 8;
         this.cropWidth = 1;
+
+        this.c = c;
 
     }
     public void tick(){
@@ -69,24 +81,15 @@ public class Player {
         else if(isMovingDown){
             this.y += this.velocity;
         }
-        if(northShooting){
-            Bullet nbullet = new Bullet(0,this.x,this.y);
-        }
-        else if(southShooting){
-            Bullet nbullet = new Bullet(1,this.x,this.y);
-        } else if(westShooting){
-            Bullet nbullet = new Bullet(3,this.x,this.y);
-        } else if(eastShooting){
-            Bullet nbullet = new Bullet(2,this.x,this.y);
-        }
+
         this.boundingBox = new Rectangle(this.x + 4 , this.y + 2, this.width -6,this.height -4);
     }
     public void redner(Graphics g){
         if (isMovingDown || isMovingRight){
             g.drawImage(this.sh.crop(1+this.cropWidth*this.width,0,this.width,this.height),this.x,this.y,null);
-        }else if (isMovingLeft){
+        }else if (isMovingLeft || facingLeft){
             g.drawImage(this.sh.crop(1+this.cropWidth*this.width,32,this.width,this.height),this.x,this.y,null);
-        }else if (isMovingUp){
+        }else if (isMovingUp || facingUp){
             g.drawImage(this.sh.crop(1+this.cropWidth*this.width,64,this.width,this.height),this.x,this.y,null);
         }else{
             g.drawImage(this.sh.crop(0,0,this.width,this.height),this.x,this.y,null);

@@ -9,7 +9,7 @@ import java.awt.*;
  */
 public class Bullet {
     int direction;
-    int bulletX,bulletY,bulletW,bulletH, bulletVelocityX, bulletVelocityY ;
+    int bulletX,bulletY,bulletW,bulletH, bulletVelocityX = 0, bulletVelocityY = 0 ;
     private Rectangle boundingBox;
 
     public Bullet(int direction, int bulletX, int bulletY) {
@@ -25,16 +25,16 @@ public class Bullet {
         this.bulletX += bulletVelocityX;
         this.bulletY += bulletVelocityY;
         if(direction == 0){
-            bulletVelocityY = -5;
+            bulletVelocityY = -15;
         }
         if(direction == 1){
-            bulletVelocityY = +5;
+            bulletVelocityY = +15;
         }
         if(direction == 2){
-            bulletVelocityX = -5;
+            bulletVelocityX = -15;
         }
         if(direction == 3){
-            bulletVelocityX = +5;
+            bulletVelocityX = +15;
         }
     }
     public void render(Graphics g) {
