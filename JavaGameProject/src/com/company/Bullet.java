@@ -11,12 +11,14 @@ public class Bullet {
     int direction;
     int bulletX,bulletY,bulletW,bulletH, bulletVelocityX = 0, bulletVelocityY = 0 ;
     public Rectangle boundingBox;
+    Controller c;
 
 
-    public Bullet(int direction, int bulletX, int bulletY) {
+    public Bullet(int direction, int bulletX, int bulletY, Controller c) {
         this.direction = direction;
         this.bulletX = bulletX;
         this.bulletY = bulletY;
+        this.c = c;
     }
 
     public  Rectangle bulletBoundixBox(){
@@ -24,6 +26,9 @@ public class Bullet {
     }
 
     public void tick(){
+        if(this.bulletX < 0 || this.bulletX > 800 || this.bulletY < 0 || this.bulletY > 600){
+            c.removeBullet(this);
+        }
         this.bulletX += bulletVelocityX;
         this.bulletY += bulletVelocityY;
         if(direction == 0){

@@ -13,8 +13,6 @@ public class Controller {
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     public ArrayList<Bullet> b = new ArrayList<Bullet>();
 
-    Bullet TempBullet;
-
     Game game;
 
     public Controller(Game game) {

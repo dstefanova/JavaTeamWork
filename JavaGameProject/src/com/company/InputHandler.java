@@ -56,7 +56,7 @@ public class InputHandler implements KeyListener {
 
                if (keyCode == KeyEvent.VK_L) {
                    if(Player.hasShotRight) {
-                       c.addBullet(new Bullet(3, p.getX() + 23, p.getY() + 12));
+                       c.addBullet(new Bullet(3, p.getX() + 23, p.getY() + 12, c));
                        System.out.println(c.b.size());
                        Player.hasShotRight =false;
                    }
@@ -65,7 +65,7 @@ public class InputHandler implements KeyListener {
 
            else if (keyCode == KeyEvent.VK_I) {
                    if(Player.hasShotUp) {
-                       c.addBullet(new Bullet(0, p.getX() + 13, p.getY() + 4));
+                       c.addBullet(new Bullet(0, p.getX() + 13, p.getY() + 4, c));
                        Player.facingUp = true;
                        Player.hasShotUp = false;
                    }
@@ -74,7 +74,7 @@ public class InputHandler implements KeyListener {
 
          else   if (keyCode == KeyEvent.VK_K) {
                    if(Player.hasShotDown) {
-                       c.addBullet(new Bullet(1, p.getX() + 13, p.getY() + 20));
+                       c.addBullet(new Bullet(1, p.getX() + 13, p.getY() + 20, c));
                        Player.hasShotDown = false;
                    }
             }
@@ -82,7 +82,7 @@ public class InputHandler implements KeyListener {
 
         else if (keyCode == KeyEvent.VK_J) {
                    if(Player.hasShotLeft) {
-                       c.addBullet(new Bullet(2, p.getX(), p.getY() + 12));
+                       c.addBullet(new Bullet(2, p.getX(), p.getY() + 12, c));
                        Player.facingLeft = true;
                        Player.hasShotLeft = false;
                    }

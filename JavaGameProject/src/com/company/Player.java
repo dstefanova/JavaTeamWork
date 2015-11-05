@@ -12,7 +12,6 @@ import java.awt.*;
 public class Player {
     private int x, y, width, height, velocity;
     private SpriteSheet sh;
-    private String name;
     private int cropWidth;
     public Rectangle getBoundingBox(){
         return boundingBox;
@@ -33,15 +32,13 @@ public class Player {
         return y;
     }
 
-    public Player(int x, int y, int width, int height, String name, Controller c) {
+    public Player(int x, int y, int width, int height, Controller c) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.boundingBox = new Rectangle(this.x + 2 , this.y + 2, this.width -4,this.height -4);
         this.sh = new SpriteSheet(ImageLoader.load("/Images/Dancho.png"));
-
-        this.name = name;
         this.velocity = 8;
         this.cropWidth = 1;
 
@@ -49,7 +46,6 @@ public class Player {
 
     }
     public void tick(){
-
         this.cropWidth++;
 
         if (this.cropWidth >= 3) {
