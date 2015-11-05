@@ -10,7 +10,8 @@ import java.awt.*;
 public class Bullet {
     int direction;
     int bulletX,bulletY,bulletW,bulletH, bulletVelocityX = 0, bulletVelocityY = 0 ;
-    private Rectangle boundingBox;
+    public Rectangle boundingBox;
+
 
     public Bullet(int direction, int bulletX, int bulletY) {
         this.direction = direction;
@@ -21,6 +22,7 @@ public class Bullet {
     public  Rectangle bulletBoundixBox(){
         return boundingBox;
     }
+
     public void tick(){
         this.bulletX += bulletVelocityX;
         this.bulletY += bulletVelocityY;
@@ -36,8 +38,10 @@ public class Bullet {
         if(direction == 3){
             bulletVelocityX = +15;
         }
+        this.boundingBox = new Rectangle(this.bulletX , this.bulletY, 7,7);
     }
     public void render(Graphics g) {
         g.drawImage(ImageLoader.load("/Images/bullet.png"),bulletX,bulletY,null);
+        g.drawRect(this.bulletX,this.bulletY,7,7);
     }
 }

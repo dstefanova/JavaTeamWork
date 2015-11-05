@@ -1,6 +1,7 @@
 package com.company;
 
 import Display.Display;
+import javafx.scene.input.KeyCode;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -53,21 +54,40 @@ public class InputHandler implements KeyListener {
         Player.isMovingUp = true;
     }
 
-        if(keyCode == KeyEvent.VK_L){
-            c.addBullet(new Bullet(3, p.getX()+23, p.getY()+12));
+               if (keyCode == KeyEvent.VK_L) {
+                   if(Player.hasShotRight) {
+                       c.addBullet(new Bullet(3, p.getX() + 23, p.getY() + 12));
+                       System.out.println(c.b.size());
+                       Player.hasShotRight =false;
+                   }
 
-        }
-        else if(keyCode == KeyEvent.VK_I){
-            c.addBullet(new Bullet(0, p.getX()+13, p.getY()+4));
-            Player.facingUp = true;
-        }
-        else if(keyCode == KeyEvent.VK_K){
-            c.addBullet(new Bullet(1, p.getX()+13, p.getY()+20));
-        }
-        else if(keyCode == KeyEvent.VK_J){
-            c.addBullet(new Bullet(2, p.getX(), p.getY()+12));
-            Player.facingLeft = true;
-        }
+           }
+
+           else if (keyCode == KeyEvent.VK_I) {
+                   if(Player.hasShotUp) {
+                       c.addBullet(new Bullet(0, p.getX() + 13, p.getY() + 4));
+                       Player.facingUp = true;
+                       Player.hasShotUp = false;
+                   }
+            }
+
+
+         else   if (keyCode == KeyEvent.VK_K) {
+                   if(Player.hasShotDown) {
+                       c.addBullet(new Bullet(1, p.getX() + 13, p.getY() + 20));
+                       Player.hasShotDown = false;
+                   }
+            }
+
+
+        else if (keyCode == KeyEvent.VK_J) {
+                   if(Player.hasShotLeft) {
+                       c.addBullet(new Bullet(2, p.getX(), p.getY() + 12));
+                       Player.facingLeft = true;
+                       Player.hasShotLeft = false;
+                   }
+            }
+
     }
 
     @Override
@@ -102,8 +122,16 @@ public class InputHandler implements KeyListener {
 
         if (keyCode == KeyEvent.VK_J){
             Player.facingLeft = false;
+            Player.hasShotLeft = true;
         }else if (keyCode == KeyEvent.VK_I){
             Player.facingUp = false;
+            Player.hasShotUp = true;
+        }
+        else if(keyCode == KeyEvent.VK_L){
+            Player.hasShotRight = true;
+        }
+        else if(keyCode == KeyEvent.VK_K){
+            Player.hasShotDown = true;
         }
     }
 }

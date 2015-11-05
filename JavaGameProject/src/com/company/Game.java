@@ -25,6 +25,8 @@ public class Game implements Runnable{
     private Player player;
     private InputHandler ih;
     private Controller c;
+    private Bullet bullet;
+
 
     public Game(String title, int WIDTH, int HEIGHT) {
         this.HEIGHT = HEIGHT;
@@ -59,7 +61,8 @@ public class Game implements Runnable{
         this.player.redner(g);
         c.render(g);
         this.g.drawRect(this.player.getBoundingBox().x,this.player.getBoundingBox().y,this.player.getBoundingBox().width,this.player.getBoundingBox().height);
-       // this.g.drawImage(Assets.playerImage,100,200,null);
+        //this.g.drawRect(this.bullet.bulletBoundixBox().x,this.bullet.bulletBoundixBox().y,8,8);
+        // this.g.drawImage(Assets.playerImage,100,200,null);
         //image end
         this.bs.show();
         this.g.dispose();
@@ -68,7 +71,7 @@ public class Game implements Runnable{
     @Override
     public void run() {
         this.init();
-        int fps = 30;
+        int fps = 60;
         double  ticksPerFrame = 1_000_000_000/fps;
         double delta = 0;
         long now;
