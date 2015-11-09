@@ -19,6 +19,7 @@ public class Bullet {
         this.bulletX = bulletX;
         this.bulletY = bulletY;
         this.c = c;
+        this.boundingBox = new Rectangle(this.bulletX , this.bulletY, 7,7);
     }
 
     public  Rectangle bulletBoundixBox(){
@@ -43,7 +44,7 @@ public class Bullet {
         if(direction == 3){
             bulletVelocityX = +15;
         }
-        this.boundingBox = new Rectangle(this.bulletX , this.bulletY, 7,7);
+
     }
     public void render(Graphics g) {
         g.drawImage(ImageLoader.load("/Images/bullet.png"),bulletX,bulletY,null);

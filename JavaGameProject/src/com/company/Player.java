@@ -20,6 +20,7 @@ public class Player {
     Controller c;
 
 
+
     public static boolean isMovingUp, isMovingDown, isMovingLeft, isMovingRight;
     public static boolean facingUp, facingLeft;
     public static boolean hasShotUp = true,hasShotDown = true,hasShotLeft = true,hasShotRight = true;

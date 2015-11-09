@@ -10,28 +10,32 @@ import java.awt.*;
  */
 public class Zombie1 extends Enemy {
     private SpriteSheet sh = new SpriteSheet(ImageLoader.load("/Images/ZombieSheet.png"));
-    public Zombie1(double x, double y, int width, int height, Controller c, Player p, double speed) {
-        super(x, y, width, height, c, p, speed);
+    public Zombie1(float x, float y, int width, int height, ZombieController zc, Player p, float speed, Controller c) {
+        super(x, y, width, height, zc, p,speed,c);
     }
 
-    public void tick(){
-        if (this.enemyColisionBox.intersects(p.getBoundingBox())){
-            c.removeZombie1(this);
+    public void tick() {
+        if (this.enemyColisionBox.intersects(p.getBoundingBox())) {
+            zc.removeZombie1(this);
         }
+        if (this.enemyColisionBox.intersects(bullet.boundingBox)) {
+            zc.removeZombie1(this);
 
-        if (p.getX() > this.x){
-            this.x += speed;
-        }else if(p.getX() < this.x){
-            this.x -= speed;
+
+            if (p.getX() > this.x) {
+                this.x += speed;
+            } else if (p.getX() < this.x) {
+                this.x -= speed;
+            }
+
+            if (p.getY() > this.y) {
+                this.y += speed;
+            } else if (p.getY() < this.y) {
+                this.y -= speed;
+            }
+
+            this.enemyColisionBox = new Rectangle((int) this.x + 4, (int) this.y + 2, this.width - 6, this.height - 4);
         }
-
-        if (p.getY() > this.y){
-            this.y += speed;
-        }else if(p.getY() < this.y){
-            this.y -= speed;
-        }
-
-        this.enemyColisionBox = new Rectangle((int)this.x + 4 , (int)this.y + 2, this.width -6,this.height -4);
     }
 
     public void render(Graphics g){
