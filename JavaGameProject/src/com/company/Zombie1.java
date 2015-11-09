@@ -15,6 +15,13 @@ public class Zombie1 extends Enemy {
     }
 
     public void tick() {
+        for (int i = 0; i < c.b.size(); i++) {
+             if(this.enemyColisionBox.intersects(c.b.get(i).boundingBox)){
+                 c.removeZombie1(this);
+                 c.b.remove(c.b.get(i));
+             }
+            
+        }
         if (this.enemyColisionBox.intersects(p.getBoundingBox())) {
             c.removeZombie1(this);
         }
