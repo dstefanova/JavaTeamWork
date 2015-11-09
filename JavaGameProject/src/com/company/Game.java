@@ -23,6 +23,7 @@ public class Game implements Runnable{
     private BufferStrategy bs;
     private Graphics g;
     private Player player;
+    private Zombie1 zombie;
     private InputHandler ih;
     private Controller c;
     private Bullet bullet;
@@ -40,7 +41,7 @@ public class Game implements Runnable{
         this.sh = new SpriteSheet(ImageLoader.load("/Images/Dancho.png")); //player
         Assets.init();
         this.player = new Player(100,0,32,32,c);
-        this.c = new Controller(this);
+        this.c = new Controller(this,this.player);
         this.ih = new InputHandler(display, c, player);
     }
 
@@ -57,7 +58,7 @@ public class Game implements Runnable{
         this.g = this.bs.getDrawGraphics();
         this.g.clearRect(0, 0, this.WIDTH, this.HEIGHT);
         // image Start
-        this.g.drawImage(ImageLoader.load("/Images/TU.jpg"),0,0,null); //Background
+        //this.g.drawImage(ImageLoader.load("/Images/TU.jpg"),0,0,null); //Background
         this.player.redner(g);
         c.render(g);
         this.g.drawRect(this.player.getBoundingBox().x,this.player.getBoundingBox().y,this.player.getBoundingBox().width,this.player.getBoundingBox().height);

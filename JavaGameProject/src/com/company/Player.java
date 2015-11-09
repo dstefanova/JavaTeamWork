@@ -39,7 +39,7 @@ public class Player {
         this.height = height;
         this.boundingBox = new Rectangle(this.x + 2 , this.y + 2, this.width -4,this.height -4);
         this.sh = new SpriteSheet(ImageLoader.load("/Images/Dancho.png"));
-        this.velocity = 8;
+        this.velocity = 2;
         this.cropWidth = 1;
 
         this.c = c;
@@ -47,7 +47,18 @@ public class Player {
     }
     public void tick(){
         this.cropWidth++;
-
+        if (this.x > 768){
+            x=768;
+        }
+        if (this.x < 0){
+            x=0;
+        }
+        if (this.y > 568){
+            y=568;
+        }
+        if (this.y < 0){
+            y=0;
+        }
         if (this.cropWidth >= 3) {
             this.cropWidth = 1;
         }

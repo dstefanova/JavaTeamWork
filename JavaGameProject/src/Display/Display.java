@@ -22,14 +22,16 @@ public class Display extends Canvas {
         this.createFrame();
     }
     private void createFrame(){
+
         Dimension dimension = new Dimension(this.WIDTH, this.HEIGHT);
         this.frame = new JFrame(this.title);
+        this.frame.setFocusable(true);
         this.frame.setSize(this.WIDTH, this.HEIGHT);
         this.frame.setResizable(false);
         this.frame.setLocationRelativeTo(null);
         this.frame.setVisible(true);
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.frame.setFocusable(true);
+
 
         this.canvas = new Canvas();
         this.canvas.setMaximumSize(dimension);
