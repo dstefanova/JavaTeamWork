@@ -10,16 +10,14 @@ import java.awt.*;
  */
 public class Zombie1 extends Enemy {
     private SpriteSheet sh = new SpriteSheet(ImageLoader.load("/Images/ZombieSheet.png"));
-    public Zombie1(float x, float y, int width, int height, ZombieController zc, Player p, float speed, Controller c) {
-        super(x, y, width, height, zc, p,speed,c);
+    public Zombie1(float x, float y, int width, int height,  Controller c, Player p, float speed) {
+        super(x, y, width, height, c,p,speed);
     }
 
     public void tick() {
         if (this.enemyColisionBox.intersects(p.getBoundingBox())) {
-            zc.removeZombie1(this);
+            c.removeZombie1(this);
         }
-        if (this.enemyColisionBox.intersects(bullet.boundingBox)) {
-            zc.removeZombie1(this);
 
 
             if (p.getX() > this.x) {
@@ -36,7 +34,7 @@ public class Zombie1 extends Enemy {
 
             this.enemyColisionBox = new Rectangle((int) this.x + 4, (int) this.y + 2, this.width - 6, this.height - 4);
         }
-    }
+
 
     public void render(Graphics g){
         g.drawImage(this.sh.crop(1+this.cropWidth*this.width,0,this.width,this.height),(int)this.x,(int)this.y,null);

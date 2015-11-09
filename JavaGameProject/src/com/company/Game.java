@@ -27,7 +27,7 @@ public class Game implements Runnable{
     private InputHandler ih;
     private Controller c;
     private Bullet bullet;
-    private ZombieController zc;
+
 
 
     public Game(String title, int WIDTH, int HEIGHT) {
@@ -44,13 +44,12 @@ public class Game implements Runnable{
         this.player = new Player(100,0,32,32,c);
         this.c = new Controller(this,this.player);
         this.ih = new InputHandler(display, c, player);
-        this.zc = new ZombieController(this,this.player);
+
     }
 
     private void tick(){
         this.player.tick();
         c.tick();
-        zc.tick();
     }
     private void render(){
         this.bs = this.display.getCanvas().getBufferStrategy();
@@ -64,7 +63,6 @@ public class Game implements Runnable{
         //this.g.drawImage(ImageLoader.load("/Images/TU.jpg"),0,0,null); //Background
         this.player.redner(g);
         c.render(g);
-        zc.render(g);
         this.g.drawRect(this.player.getBoundingBox().x,this.player.getBoundingBox().y,this.player.getBoundingBox().width,this.player.getBoundingBox().height);
         //this.g.drawRect(this.bullet.bulletBoundixBox().x,this.bullet.bulletBoundixBox().y,8,8);
         // this.g.drawImage(Assets.playerImage,100,200,null);
