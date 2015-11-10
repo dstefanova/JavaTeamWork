@@ -12,9 +12,12 @@ public class Controller {
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     public ArrayList<Bullet> b = new ArrayList<Bullet>();
-     public ArrayList<FirstZombie> z = new ArrayList<FirstZombie>();
+    public ArrayList<FirstZombie> z = new ArrayList<FirstZombie>();
+    public ArrayList<FirstBoss> fbf = new ArrayList<FirstBoss>();
     private Player p;
     private int zombieCount = 0;
+    private int bossCount = 0;
+
     Random rand = new Random();
     Game game;
 
@@ -24,22 +27,32 @@ public class Controller {
     }
 
     public void tick(){
+
         if (zombieCount<6){
             addFirstZombie(new FirstZombie(rand.nextInt(800),rand.nextInt(600),32,32,this,this.p,0.5f));
         }
-
+        if(bossCount<1) {
+            addFirstBoss(new FirstBoss(10, 10, 32, 32, this, this.p, 0.2f));
+        }
         for (int i = 0; i < b.size(); i++) {
             b.get(i).tick();
+
         }
-        ////SPAWNING THE ZOMBIES////
 
         ////SPAWNING THE ZOMBIES////
 
+        ////SPAWNING THE ZOMBIES////
+        for (int i = 0; i < fbf.size(); i++) {
+            fbf.get(i).tick();
+        }
         for (int i = 0; i < z.size(); i++) {
             z.get(i).tick();
         }
     }
     public  void render(Graphics g){
+        for (int i = 0; i < fbf.size(); i++) {
+            fbf.get(i).render(g);
+        }
         for (int i = 0; i < b.size(); i++) {
             b.get(i).render(g);
 
@@ -48,6 +61,8 @@ public class Controller {
             z.get(i).render(g);
 
         }
+
+
     }
 
     public void addBullet(Bullet bullet){
@@ -57,6 +72,10 @@ public class Controller {
         z.add(zombie);
         zombieCount++;
     }
+    public void addFirstBoss(FirstBoss boss){
+        fbf.add(boss);
+        bossCount++;
+    }
 
     public void removeBullet(Bullet bullet){
         b.remove(bullet);
@@ -64,5 +83,9 @@ public class Controller {
     public void removeFirstZombie(FirstZombie zombie){
         z.remove(zombie);
         zombieCount--;
+    }
+    public void removeFirstBoss(FirstBoss boss){
+        fbf.remove(boss);
+        bossCount--;
     }
 }

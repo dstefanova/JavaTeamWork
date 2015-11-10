@@ -24,6 +24,7 @@ public class Game implements Runnable{
     private Graphics g;
     private Player player;
     private FirstZombie zombie;
+    private FirstBoss firstBoss;
     private InputHandler ih;
     private Controller c;
     private Bullet bullet;
@@ -50,6 +51,7 @@ public class Game implements Runnable{
     private void tick(){
         this.player.tick();
         c.tick();
+
     }
     private void render(){
         this.bs = this.display.getCanvas().getBufferStrategy();
@@ -63,6 +65,7 @@ public class Game implements Runnable{
         //this.g.drawImage(ImageLoader.load("/Images/TU.jpg"),0,0,null); //Background
         this.player.redner(g);
         c.render(g);
+        //firstBoss.render(g);
         this.g.drawRect(this.player.getBoundingBox().x,this.player.getBoundingBox().y,this.player.getBoundingBox().width,this.player.getBoundingBox().height);
         //this.g.drawRect(this.bullet.bulletBoundixBox().x,this.bullet.bulletBoundixBox().y,8,8);
         // this.g.drawImage(Assets.playerImage,100,200,null);
