@@ -22,7 +22,7 @@ public class Bullet {
         this.boundingBox = new Rectangle(this.bulletX , this.bulletY, 7,7);
     }
 
-    public  Rectangle bulletBoundixBox(){
+    public Rectangle bulletBoundixBox(){
         return boundingBox;
     }
 
@@ -44,6 +44,8 @@ public class Bullet {
         if(direction == 3){
             bulletVelocityX = +15;
         }
+
+        this.boundingBox = new Rectangle(this.bulletX , this.bulletY, 7,7);
 
     }
     public void render(Graphics g) {

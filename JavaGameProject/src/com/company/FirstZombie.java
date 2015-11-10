@@ -8,24 +8,20 @@ import java.awt.*;
 /**
  * Created by Rossen on 9.11.2015 ã..
  */
-public class Zombie1 extends Enemy {
+public class FirstZombie extends Enemy {
     private SpriteSheet sh = new SpriteSheet(ImageLoader.load("/Images/ZombieSheet.png"));
-    public Zombie1(float x, float y, int width, int height,  Controller c, Player p, float speed) {
+    public FirstZombie(float x, float y, int width, int height, Controller c, Player p, float speed) {
         super(x, y, width, height, c,p,speed);
     }
 
     public void tick() {
         for (int i = 0; i < c.b.size(); i++) {
              if(this.enemyColisionBox.intersects(c.b.get(i).boundingBox)){
-                 c.removeZombie1(this);
+                 c.removeFirstZombie(this);
                  c.b.remove(c.b.get(i));
              }
             
         }
-        if (this.enemyColisionBox.intersects(p.getBoundingBox())) {
-            c.removeZombie1(this);
-        }
-
 
             if (p.getX() > this.x) {
                 this.x += speed;

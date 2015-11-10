@@ -23,7 +23,7 @@ public class Game implements Runnable{
     private BufferStrategy bs;
     private Graphics g;
     private Player player;
-    private Zombie1 zombie;
+    private FirstZombie zombie;
     private InputHandler ih;
     private Controller c;
     private Bullet bullet;

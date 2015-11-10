@@ -2,7 +2,6 @@ package com.company;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.Random;
 
 /**
@@ -13,11 +12,10 @@ public class Controller {
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     public ArrayList<Bullet> b = new ArrayList<Bullet>();
-     public ArrayList<Zombie1> z = new ArrayList<Zombie1>();
+     public ArrayList<FirstZombie> z = new ArrayList<FirstZombie>();
     private Player p;
     private int zombieCount = 0;
     Random rand = new Random();
-    private int x,y,direction;
     Game game;
 
     public Controller(Game game, Player p) {
@@ -27,7 +25,7 @@ public class Controller {
 
     public void tick(){
         if (zombieCount<6){
-            addZombie1(new Zombie1(rand.nextInt(800),rand.nextInt(600),32,32,this,this.p,0.8f));
+            addFirstZombie(new FirstZombie(rand.nextInt(800),rand.nextInt(600),32,32,this,this.p,0.5f));
         }
 
         for (int i = 0; i < b.size(); i++) {
@@ -55,7 +53,7 @@ public class Controller {
     public void addBullet(Bullet bullet){
         b.add(bullet);
     }
-    public void addZombie1(Zombie1 zombie){
+    public void addFirstZombie(FirstZombie zombie){
         z.add(zombie);
         zombieCount++;
     }
@@ -63,7 +61,7 @@ public class Controller {
     public void removeBullet(Bullet bullet){
         b.remove(bullet);
     }
-    public void removeZombie1(Zombie1 zombie){
+    public void removeFirstZombie(FirstZombie zombie){
         z.remove(zombie);
         zombieCount--;
     }
