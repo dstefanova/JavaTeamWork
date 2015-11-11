@@ -19,6 +19,8 @@ public class FirstZombie extends Enemy {
              if(this.enemyColisionBox.intersects(c.b.get(i).boundingBox)){
                  c.removeFirstZombie(this);
                  c.b.remove(c.b.get(i));
+                 c.setZombieKillCount(c.getZombieKillCount()+1);
+                 System.out.println(c.getZombieKillCount());
              }
             
         }

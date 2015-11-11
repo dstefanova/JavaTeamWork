@@ -24,7 +24,6 @@ public class Game implements Runnable{
     private Graphics g;
     private Player player;
     private FirstZombie zombie;
-    private FirstBoss firstBoss;
     private InputHandler ih;
     private Controller c;
     private Bullet bullet;

@@ -57,7 +57,7 @@ public class InputHandler implements KeyListener {
                if (keyCode == KeyEvent.VK_L) {
                    if(Player.hasShotRight) {
                        c.addBullet(new Bullet(3, p.getX() + 23, p.getY() + 12, c));
-                       System.out.println(c.b.size());
+//                       System.out.println(c.b.size());
                        Player.hasShotRight =false;
                    }
 

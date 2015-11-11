@@ -17,6 +17,18 @@ public class Controller {
     private Player p;
     private int zombieCount = 0;
     private int bossCount = 0;
+    private int zombieKillCount = 0;
+    private boolean firstBossKilled = false;
+
+    public boolean isFirstBossKilled() {
+        return firstBossKilled;
+    }
+
+    public void setFirstBossKilled(boolean firstBossKilled) {
+        this.firstBossKilled = firstBossKilled;
+    }
+
+
 
     Random rand = new Random();
     Game game;
@@ -28,11 +40,15 @@ public class Controller {
 
     public void tick(){
 
-        if (zombieCount<6){
+        if (zombieCount<6 && zombieKillCount < 10){
             addFirstZombie(new FirstZombie(rand.nextInt(800),rand.nextInt(600),32,32,this,this.p,0.5f));
         }
-        if(bossCount<1) {
+        if(bossCount<1 && zombieKillCount >= 10) {
             addFirstBoss(new FirstBoss(10, 10, 32, 32, this, this.p, 0.2f));
+        }
+        if (firstBossKilled){
+            zombieKillCount = 0;
+            firstBossKilled = false;
         }
         for (int i = 0; i < b.size(); i++) {
             b.get(i).tick();
@@ -87,5 +103,13 @@ public class Controller {
     public void removeFirstBoss(FirstBoss boss){
         fbf.remove(boss);
         bossCount--;
+    }
+
+    public int getZombieKillCount() {
+        return zombieKillCount;
+    }
+
+    public void setZombieKillCount(int zombieKillCount) {
+        this.zombieKillCount = zombieKillCount;
     }
 }
