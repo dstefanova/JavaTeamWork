@@ -14,6 +14,9 @@ public class FirstBoss extends Enemy{
     private int health = 100;
     private Random rand = new Random();
     private java.util.List<FirstZombie> listOfBossZombies = new ArrayList<FirstZombie>();
+    private boolean isDark = false;
+    private  float minionSpeed  = 0.5f;
+    private  float speedo;
 
 
     public FirstBoss(float x, float y, int width, int height, Controller c, Player p, float speed) {
@@ -31,12 +34,15 @@ public class FirstBoss extends Enemy{
                 c.setZombieKillCount(0);
             }
             if(health>0){
-                int chanceToSpawn = rand.nextInt(100);
+                int chanceToSpawn = rand.nextInt(265);
                 if(chanceToSpawn == 69){
-                    c.addFirstZombie((new FirstZombie(rand.nextInt(800),rand.nextInt(600),32,32,this.c,this.p,0.5f)));
+                    c.addFirstZombie((new FirstZombie(this.x+50,this.y+50,32,32,this.c,this.p,(float)rand.nextInt(100)/150)));
+                    c.addFirstZombie((new FirstZombie(this.x-50,this.y+50,32,32,this.c,this.p,(float)rand.nextInt(100)/150)));
+                    c.addFirstZombie((new FirstZombie(this.x+50,this.y-50,32,32,this.c,this.p,(float)rand.nextInt(100)/150)));
+                    c.addFirstZombie((new FirstZombie(this.x-50,this.y-50,32,32,this.c,this.p,(float)rand.nextInt(100)/150)));
                 }
-            }
 
+            }
         }
 
         if (p.getX() > this.x) {
@@ -60,5 +66,19 @@ public class FirstBoss extends Enemy{
         g.drawImage(this.shb.crop(this.cropWidth*this.width,128,this.width,this.height),(int)this.x,(int)this.y,null);
         g.setColor(Color.red);
         g.fillRect(0,0,this.health*8,16);
+
+        if (!isDark){
+            Color myOtherColour = new Color(0, 0, 0, 255);
+            g.setColor(myOtherColour);
+            g.fillRect(0,0,800,600);
+            isDark = true;
+        }else{
+            Color myColour = new Color(0, 0,0, 128);
+            g.setColor(myColour);
+            g.fillRect(0,0,800,600);
+            isDark = false;
+        }
+
+
     }
 }
