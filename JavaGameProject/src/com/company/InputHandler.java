@@ -51,8 +51,12 @@ public class InputHandler implements KeyListener {
             Player.isMovingRight = true;
         }
         else if(keyCode == KeyEvent.VK_UP){
-        Player.isMovingUp = true;
-    }
+            Player.isMovingUp = true;
+        }
+
+       if (keyCode == KeyEvent.VK_R && !p.danchoIsAlive){
+           c.reset = true;
+        }
 
                if (keyCode == KeyEvent.VK_L) {
                    if(Player.hasShotRight) {

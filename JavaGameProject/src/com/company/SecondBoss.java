@@ -9,19 +9,19 @@ import java.util.*;
 /**
  * Created by abelina on 10.11.2015 ã..
  */
-public class FirstBoss extends Enemy{
+public class SecondBoss extends Enemy{
     private SpriteSheet shb = new SpriteSheet(ImageLoader.load("/Images/ZombieSheet.png"));
-    private int health = 100;
+    private int health = 200;
     private Random rand = new Random();
-    private java.util.List<FirstZombie> listOfBossZombies = new ArrayList<FirstZombie>();
+//    private java.util.List<FirstZombie> listOfBossZombies = new ArrayList<FirstZombie>();
     private boolean isDark = false;
     private  float minionSpeed  = 0.5f;
     private  float speedo;
 
 
-    public FirstBoss(float x, float y, int width, int height, Controller c, Player p, float speed) {
+    public SecondBoss(float x, float y, int width, int height, Controller c, Player p, float speed) {
         super(x, y, width, height, c, p, speed);
-        System.out.println("FIRST BOSS");
+        System.out.println("SECOND BOSS");
     }
     public void tick() {
         for (int i = 0; i < c.b.size(); i++) {
@@ -29,28 +29,24 @@ public class FirstBoss extends Enemy{
                 health -= 2;
                 c.b.remove(c.b.get(i));
             }
-            if(health <= 0){
-                c.removeFirstBoss(this);
-                c.setFirstBossKilled(true);
-                c.setZombieKillCount(0);
-            }
             if(health>0){
-                int chanceToSpawn = rand.nextInt(265);
-                if(chanceToSpawn == 69){
-                    c.addFirstZombie((new FirstZombie(this.x+50,this.y+50,32,32,this.c,this.p,(float)rand.nextInt(100)/100)));
-                    c.addFirstZombie((new FirstZombie(this.x-50,this.y+50,32,32,this.c,this.p,(float)rand.nextInt(100)/100)));
-                    c.addFirstZombie((new FirstZombie(this.x+50,this.y-50,32,32,this.c,this.p,(float)rand.nextInt(100)/100)));
-                    c.addFirstZombie((new FirstZombie(this.x-50,this.y-50,32,32,this.c,this.p,(float)rand.nextInt(100)/100)));
+                int chanceToSpawn = rand.nextInt(200);
+                if(chanceToSpawn == 69) {
+                    c.addBossBullet(new BossBullet((int) this.x, (int) this.y, this.c));
+                    c.addBossBullet(new BossBullet((int) this.x, (int) this.y, this.c));
+                    c.addBossBullet(new BossBullet((int) this.x, (int) this.y, this.c));
+                    c.addBossBullet(new BossBullet((int) this.x, (int) this.y, this.c));
                 }
-
+            }
+            if(health <= 0){
+                c.removeSecondBoss(this);
+                c.setSecondBossKilled(true);
+                c.setZombieKillCount(0);
+                System.out.println("YOU WON");
+                c.stopZombies = true;
             }
         }
 
-        for (int i = 0; i < c.sl.size(); i++) {
-            if (this.enemyColisionBox.intersects(c.sl.get(i).boundingBox)) {
-                Player.danchoIsAlive = false;
-            }
-        }
         if (p.getX() > this.x) {
             this.x += speed;
         } else if (p.getX() < this.x) {
@@ -64,14 +60,19 @@ public class FirstBoss extends Enemy{
         }
 
         this.enemyColisionBox = new Rectangle((int) this.x + 4, (int) this.y + 2, this.width - 6, this.height - 4);
+        for (int i = 0; i < c.sl.size(); i++) {
+            if (this.enemyColisionBox.intersects(c.sl.get(i).boundingBox)) {
+                Player.danchoIsAlive = false;
+            }
+        }
     }
 
 
     public void render(Graphics g){
         //g.drawRect(10,10,100,40);
-        g.drawImage(this.shb.crop(this.cropWidth*this.width,128,this.width,this.height),(int)this.x,(int)this.y,null);
+        g.drawImage(this.shb.crop(192,128,this.width,this.height),(int)this.x,(int)this.y,null);
         g.setColor(Color.red);
-        g.fillRect(0,0,this.health*8,16);
+        g.fillRect(0,0,this.health*4,16);
 
         if (!isDark){
             Color myOtherColour = new Color(0, 0, 0, 255);

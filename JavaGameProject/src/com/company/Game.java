@@ -22,10 +22,11 @@ public class Game implements Runnable{
     private int i = 0;
     private BufferStrategy bs;
     private Graphics g;
+    private Controller c;
     private Player player;
     private FirstZombie zombie;
     private InputHandler ih;
-    private Controller c;
+
     private Bullet bullet;
 
 
@@ -65,7 +66,7 @@ public class Game implements Runnable{
         this.player.redner(g);
         c.render(g);
         //firstBoss.render(g);
-        this.g.drawRect(this.player.getBoundingBox().x,this.player.getBoundingBox().y,this.player.getBoundingBox().width,this.player.getBoundingBox().height);
+//        this.g.drawRect(this.player.getBoundingBox().x,this.player.getBoundingBox().y,this.player.getBoundingBox().width,this.player.getBoundingBox().height);
         //this.g.drawRect(this.bullet.bulletBoundixBox().x,this.bullet.bulletBoundixBox().y,8,8);
         // this.g.drawImage(Assets.playerImage,100,200,null);
         //image end

@@ -16,14 +16,20 @@ public class FirstZombie extends Enemy {
 
     public void tick() {
         for (int i = 0; i < c.b.size(); i++) {
-             if(this.enemyColisionBox.intersects(c.b.get(i).boundingBox)){
-                 c.removeFirstZombie(this);
-                 c.b.remove(c.b.get(i));
-                 c.setZombieKillCount(c.getZombieKillCount()+1);
-                 System.out.println(c.getZombieKillCount());
-             }
-            
+            if (this.enemyColisionBox.intersects(c.b.get(i).boundingBox)) {
+                c.removeFirstZombie(this);
+                c.b.remove(c.b.get(i));
+                c.setZombieKillCount(c.getZombieKillCount() + 1);
+                System.out.println(c.getZombieKillCount());
+            }
         }
+        for (int i = 0; i < c.sl.size(); i++) {
+            if (this.enemyColisionBox.intersects(c.sl.get(i).boundingBox)) {
+                p.danchoIsAlive = false;
+            }
+        }
+
+
 
             if (p.getX() > this.x) {
                 this.x += speed;
@@ -39,6 +45,7 @@ public class FirstZombie extends Enemy {
 
             this.enemyColisionBox = new Rectangle((int) this.x + 4, (int) this.y + 2, this.width - 6, this.height - 4);
         }
+
 
 
     public void render(Graphics g){
