@@ -19,7 +19,7 @@ public class Player {
         return boundingBox;
     }
     public Rectangle boundingBox;
-    public static boolean danchoIsAlive = true;
+    public static boolean danchoIsAlive = true, danchoWin = false;
     Controller c;
 
 
@@ -114,6 +114,9 @@ public class Player {
                 g.drawImage(this.sh.crop(1 + this.cropWidth * this.width, 64, this.width, this.height), this.x, this.y, null);
             } else {
                 g.drawImage(this.sh.crop(0, 0, this.width, this.height), this.x, this.y, null);
+            }
+            if(danchoWin){
+                g.drawImage(ImageLoader.load("/Images/vicotyr.png"), 0, 0, null);
             }
         }else{
             g.drawImage(ImageLoader.load("/Images/Ripip.jpg"), 0, 0, null);

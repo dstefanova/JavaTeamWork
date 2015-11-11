@@ -18,7 +18,7 @@ public class Shadow {
     }
 
     public void render(Graphics g) {
-        g.fillRect((int)p.getBoundingBox().getX() ,(int)p.getBoundingBox().getY(), 26, 28);
+       // g.fillRect((int)p.getBoundingBox().getX() ,(int)p.getBoundingBox().getY(), 26, 28);
     }
 
     public void tick() {

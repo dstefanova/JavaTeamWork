@@ -80,17 +80,17 @@ public class Controller {
      addShadow(new Shadow(this,p));
     }
         if(bossCount<1 && zombieKillCount >= 40 && firstBossKilled && !secondBossKilled) {
-            addSecondBoss(new SecondBoss(400, 610, 32, 32, this, this.p, 0.5f));
+            addSecondBoss(new SecondBoss(400, 610, 32, 32, this, this.p, 0.6f));
         }
 
         if (zombieCount<6 && zombieKillCount < 30 && !firstBossKilled){
-            addFirstZombie(new FirstZombie(rand.nextInt(800),rand.nextInt(600),32,32,this,this.p,0.5f));
-        }
-        if (zombieCount<6 && zombieKillCount < 40 && firstBossKilled){
             addFirstZombie(new FirstZombie(rand.nextInt(800),rand.nextInt(600),32,32,this,this.p,0.7f));
         }
+        if (zombieCount<6 && zombieKillCount < 40 && firstBossKilled){
+            addFirstZombie(new FirstZombie(rand.nextInt(800),rand.nextInt(600),32,32,this,this.p,0.5f));
+        }
         if(bossCount<1 && zombieKillCount >= 30 && !firstBossKilled) {
-            addFirstBoss(new FirstBoss(400, -42, 32, 32, this, this.p, 0.3f));
+            addFirstBoss(new FirstBoss(400, -42, 32, 32, this, this.p, 0.4f));
         }
         for (int i = 0; i < b.size(); i++) {
             b.get(i).tick();

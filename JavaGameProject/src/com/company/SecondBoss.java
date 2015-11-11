@@ -42,8 +42,8 @@ public class SecondBoss extends Enemy{
                 c.removeSecondBoss(this);
                 c.setSecondBossKilled(true);
                 c.setZombieKillCount(0);
-                System.out.println("YOU WON");
                 c.stopZombies = true;
+                p.danchoWin = true;
             }
         }
 
