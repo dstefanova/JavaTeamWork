@@ -84,7 +84,6 @@ public class Controller {
                 addSecondBoss(new SecondBoss(400, 610, 32, 32, this, this.p, 0.1f));
             }
         }
-
         if (zombieCount<6 && zombieKillCount < 30 && !firstBossKilled){
             addFirstZombie(new FirstZombie(rand.nextInt(800),rand.nextInt(600),32,32,this,this.p,0.2f));
         }
