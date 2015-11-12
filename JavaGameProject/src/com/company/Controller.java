@@ -81,14 +81,14 @@ public class Controller {
     }
         if(bossCount<1 && zombieKillCount >= 40 && firstBossKilled && !secondBossKilled) {
             if (sbl.size() == 0) {
-                addSecondBoss(new SecondBoss(400, 610, 32, 32, this, this.p, 0.1f));
+                addSecondBoss(new SecondBoss(400, 610, 32, 32, this, this.p, 0.5f));
             }
         }
         if (zombieCount<6 && zombieKillCount < 30 && !firstBossKilled){
-            addFirstZombie(new FirstZombie(rand.nextInt(800),rand.nextInt(600),32,32,this,this.p,0.2f));
+            addFirstZombie(new FirstZombie(rand.nextInt(800),rand.nextInt(600),32,32,this,this.p,0.5f));
         }
         if (zombieCount<6 && zombieKillCount < 40 && firstBossKilled){
-            addFirstZombie(new FirstZombie(rand.nextInt(800),rand.nextInt(600),32,32,this,this.p,0.1f));
+            addFirstZombie(new FirstZombie(rand.nextInt(800),rand.nextInt(600),32,32,this,this.p,0.4f));
         }
         if(bossCount<1 && zombieKillCount >= 30 && !firstBossKilled) {
             addFirstBoss(new FirstBoss(400, -42, 32, 32, this, this.p, 0.4f));
