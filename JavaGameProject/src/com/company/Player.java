@@ -58,9 +58,6 @@ public class Player {
     }
     public void tick() {
         this.boundingBox = new Rectangle(this.x + 4, this.y + 2, this.width - 6, this.height - 4);
-
-
-
         if (danchoIsAlive) {
             this.cropWidth++;
             if (this.x > 768) {
@@ -106,18 +103,23 @@ public class Player {
 
     public void redner(Graphics g){
         if (danchoIsAlive) {
-            if (isMovingDown || isMovingRight) {
-                g.drawImage(this.sh.crop(1 + this.cropWidth * this.width, 0, this.width, this.height), this.x, this.y, null);
-            } else if (isMovingLeft || facingLeft) {
-                g.drawImage(this.sh.crop(1 + this.cropWidth * this.width, 32, this.width, this.height), this.x, this.y, null);
-            } else if (isMovingUp || facingUp) {
-                g.drawImage(this.sh.crop(1 + this.cropWidth * this.width, 64, this.width, this.height), this.x, this.y, null);
-            } else {
-                g.drawImage(this.sh.crop(0, 0, this.width, this.height), this.x, this.y, null);
-            }
             if(danchoWin){
                 g.drawImage(ImageLoader.load("/Images/vicotyr.png"), 0, 0, null);
+                c.stopZombies = true;
+
             }
+            else {
+                if (isMovingDown || isMovingRight) {
+                    g.drawImage(this.sh.crop(1 + this.cropWidth * this.width, 0, this.width, this.height), this.x, this.y, null);
+                } else if (isMovingLeft || facingLeft) {
+                    g.drawImage(this.sh.crop(1 + this.cropWidth * this.width, 32, this.width, this.height), this.x, this.y, null);
+                } else if (isMovingUp || facingUp) {
+                    g.drawImage(this.sh.crop(1 + this.cropWidth * this.width, 64, this.width, this.height), this.x, this.y, null);
+                } else {
+                    g.drawImage(this.sh.crop(0, 0, this.width, this.height), this.x, this.y, null);
+                }
+            }
+
         }else{
             g.drawImage(ImageLoader.load("/Images/Ripip.jpg"), 0, 0, null);
         }

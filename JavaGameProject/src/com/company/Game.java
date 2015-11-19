@@ -79,7 +79,7 @@ public class Game implements Runnable{
     public void run() {
         this.init();
         int fps = 60;
-        double  ticksPerFrame = 300_000_000d/fps;
+        double  ticksPerFrame = 100_000_000d/fps;
         double delta = 0;
         long now;
         long lastTimeTicked = System.nanoTime();

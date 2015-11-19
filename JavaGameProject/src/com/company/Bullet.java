@@ -50,6 +50,6 @@ public class Bullet {
     }
     public void render(Graphics g) {
         g.drawImage(ImageLoader.load("/Images/bullet.png"),bulletX,bulletY,null);
-        g.drawRect(this.bulletX,this.bulletY,7,7);
+
     }
 }

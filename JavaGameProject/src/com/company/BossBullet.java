@@ -50,6 +50,5 @@ public class BossBullet {
     }
     public void render(Graphics g) {
         g.drawImage(ImageLoader.load("/Images/red_bullet.png"),bulletX,bulletY,null);
-        g.drawRect(this.bulletX,this.bulletY,7,7);
     }
 }

@@ -81,7 +81,7 @@ public class Controller {
     }
         if(bossCount<1 && zombieKillCount >= 40 && firstBossKilled && !secondBossKilled) {
             if (sbl.size() == 0) {
-                addSecondBoss(new SecondBoss(400, 610, 32, 32, this, this.p, 0.5f));
+                addSecondBoss(new SecondBoss(400, 610, 32, 32, this, this.p, 0.6f));
             }
         }
         if (zombieCount<6 && zombieKillCount < 30 && !firstBossKilled){
